@@ -1,2 +1,2 @@
 # Python-projects
-Assortmenet of study projects
+Assortement of study projects
