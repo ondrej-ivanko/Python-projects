@@ -214,4 +214,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# něco extra pro mě
+again/
+
 # End of https://www.gitignore.io/api/python,pycharm+all
