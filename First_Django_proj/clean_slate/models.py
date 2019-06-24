@@ -9,9 +9,14 @@ class Sport(models.Model):
     type = models.CharField(max_length=15, choices=TYPE_CHOICES, null=False, blank=False,
                             help_text="collective or individual")
     sports = models.Manager()
-    context = {
-        "micovy": "Basketball",
-        "atleticky": "Skok do dalky",
-        "sporty": sports.all()
-    }
-    
+
+    def __str__(self):
+        return self.type
+
+class Mock(models.Model):
+    url = models.CharField(max_length=150, null=True, blank=True)
+    tiny = models.CharField(max_length=25, null=True, blank=True)
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.url

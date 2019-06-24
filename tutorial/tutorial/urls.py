@@ -1,4 +1,4 @@
-"""First_Django_proj URL Configuration
+"""tutorial URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -15,16 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from pages.views import homepage_view, new_page_view, simple_view, if_stat
-from tutorial.views import describe_user
-from clean_slate.views import main_view
+from rest_framework import routers
+from quickstart import views
+
+
+router = routers.DefaultRouter()
+router.register(r"users", views.UserViewSet)
+router.register(r"groups", views.GroupViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', homepage_view, name='home'),
-    path('new/', new_page_view, name='home'),
-    path('about/', simple_view, name='home'),
-    path('if/', if_stat, name="home"),
-    path("detailed/", describe_user),
-    path("sports/", include("clean_slate.urls")),
+    path("", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("", include("snippets.urls"), name="snippets")
 ]
